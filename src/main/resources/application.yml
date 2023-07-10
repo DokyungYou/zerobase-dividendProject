@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: dividend-financial
+
+
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+      path: /h2-console
+
+
+  jpa:
+    hibernate:
+      ddl-auto: create  #프로젝트 재시작할때마다 기존 테이블 삭제하고 새로 생성 (개발 초기에만 사용)
+      use-new-id-generator-mappings: false #아이디 생성 전략 (버전마다 디폴트값이 다름)
+    show-sql: true
+    defer-datasource-initialization: true #데이터 초기화 옵션 설정 ( 스프링부트 2.5버전이상부터 sql 스크립트로 데이터를 초기화해줄때 사용할 수 있는 옵션)
+
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:dividend;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+
+  redis:
+    host: localhost
+    port: 6379
+
+  jwt:
+    secret: ZGl2aWRlbmQtc3ByaW5nLWJvb3QtZGl2aWRlbmQtcHJvamVjdC10dXRvcmlhbC1qd3Qtc2VjcmV0LWtleQ==
+
+
+scheduler:
+  scrap:
+    yahoo: "0 0 0 * * *"

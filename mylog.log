@@ -1,0 +1,43 @@
+00:00:00.043 [ThreadPoolTaskScheduler-1] INFO  z.d.scheduler.ScraperScheduler - scraping scheduler is started
+00:00:00.067 [ThreadPoolTaskScheduler-1] INFO  z.d.scheduler.ScraperScheduler - scraping scheduler is started -> 3M Company
+00:00:00.279 [ThreadPoolTaskScheduler-1] ERROR o.s.s.s.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task
+java.lang.RuntimeException: org.jsoup.HttpStatusException: HTTP error fetching URL. Status=400, URL=https://finance.yahoo.com/quote/3M Company/history?period1=86400&period2=1688396400&interval=1mo
+	at zerobase.dividend.scraper.YahooFinanceScraper.scrap(YahooFinanceScraper.java:78)
+	at zerobase.dividend.scheduler.ScraperScheduler.yahooFinanceScheduling(ScraperScheduler.java:42)
+	at zerobase.dividend.scheduler.ScraperScheduler$$FastClassBySpringCGLIB$$19bef67a.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.cache.interceptor.CacheInterceptor.lambda$invoke$0(CacheInterceptor.java:54)
+	at org.springframework.cache.interceptor.CacheAspectSupport.invokeOperation(CacheAspectSupport.java:366)
+	at org.springframework.cache.interceptor.CacheAspectSupport.execute(CacheAspectSupport.java:421)
+	at org.springframework.cache.interceptor.CacheAspectSupport.execute(CacheAspectSupport.java:345)
+	at org.springframework.cache.interceptor.CacheInterceptor.invoke(CacheInterceptor.java:64)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at zerobase.dividend.scheduler.ScraperScheduler$$EnhancerBySpringCGLIB$$5f4c44ed.yahooFinanceScheduling(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.jsoup.HttpStatusException: HTTP error fetching URL
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:435)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:410)
+	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:164)
+	at org.jsoup.helper.HttpConnection.get(HttpConnection.java:153)
+	at zerobase.dividend.scraper.YahooFinanceScraper.scrap(YahooFinanceScraper.java:44)
+	... 28 common frames omitted
+00:23:23.541 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+00:23:23.544 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+00:23:23.546 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
